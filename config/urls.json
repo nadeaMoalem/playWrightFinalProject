@@ -1,0 +1,7 @@
+{
+    "base_url":"https://www.terminalx.com/",
+    "login_url":"https://www.terminalx.com/pg/MutationUserLogin",
+    "add_to_cart":"https://www.terminalx.com/pg/MutationAddAnyProductsToAnyCart",
+    "remove_from_cart":"https://www.terminalx.com/pg/MutationRemoveItemFromAnyCart",
+    "get_user_infro":"https://www.terminalx.com/pg/QueryCurrentUserInfo"
+}
