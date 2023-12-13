@@ -1,7 +1,7 @@
 // src/pages/HomePage.ts
 import { Locator , Page } from 'playwright';
 import BasePage from './basePage';
-
+import credentials from '../../../config/credentials.json'
 export default class HomePage extends BasePage {
   // Methods and locators specific to the home page...
    //locators
@@ -16,9 +16,9 @@ export default class HomePage extends BasePage {
    private myWishlistCart: Locator
    private cartButton: Locator
    private hiButtonBeforeLogOut : Locator
+   private loading : Locator
   
    
- 
    constructor(page:Page) {
        super(page);
        this.homeButton= page.locator("//a[@class='tx-link-a profile-button_OKk5 tx-link_29YD underline-hover_3GkV']")
@@ -32,15 +32,16 @@ export default class HomePage extends BasePage {
        this.quickViewButton=page.locator("//div[@class='btn-quick_3Pv7 btn-quick-view_2SXw' and @wz_dt_ref='true']")
        this.myWishlistCart=page.locator("//a[@class='tx-link-a link_2L32 link-wishlist_1lmB tx-link_29YD']")
        this.cartButton=page.locator("//a[@class='tx-link-a link_2L32 link-minicart_2nwP tx-link_29YD']")
+       this.loading=page.locator("//div[@class='loading-bar_Y1Jw']/img")
    }
    async goToHomePage(){
       await this.homeButton.click()
       await this.page.waitForLoadState('load')
    }
-   async login(username:string, password:string):Promise<void>{
+   async login():Promise<void>{
     await this.homeButton.click()
-    await this.emailInput.fill(username)
-    await this.passwordInput.fill(password)
+    await this.emailInput.fill(credentials.username)
+    await this.passwordInput.fill(credentials.password)
     await this.afterLoggingIn.click()
    }
    async forLogingOut(){
@@ -63,6 +64,12 @@ export default class HomePage extends BasePage {
    }
    async cartPickedItems(){
     await this.cartButton.click()
+    //await this.page.waitForSelector("//div[@class='loading-bar_Y1Jw']/img", { state: 'hidden', timeout: 5000 })
+    //await this.page.waitForSelector("//a[@class='tx-link-a link_2L32 link-minicart_2nwP tx-link_29YD']", { state: })
+    await this.page.waitForTimeout(2000)
+    await this.cartButton.click()
    }
-
+   async getGreetingText(){
+    return await this.hiButtonBeforeLogOut.textContent()
+   }
   }
