@@ -2,7 +2,7 @@ import { httpRequest } from "../../infrastructure/api-setup"
 import { makeLoginRequest } from "./requests/loginRequest"
 import { makeAddToCartRequest } from "./requests/addItemToCartRequestBody"
 import urls from '../../config/urls.json'
-import { BrowserContext } from "playwright"
+import { BrowserContext } from 'playwright'
 import { makeDeleteItemFromCartRequest } from "./requests/deleteItemFromCartRequestBody"
 import { makeCurrentUserInfoRequest } from "./requests/getCurrentUserInfoRequestBody"
 
