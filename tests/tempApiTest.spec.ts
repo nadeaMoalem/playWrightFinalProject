@@ -1,7 +1,7 @@
 import { expect, test } from 'playwright/test'
 import { addToCart, deleteFromCart, getUserInfro, loginCall } from '../logic/api/apiCalls'
-import urls from '../config/urls.json'
-import credentials from '../config/credentials.json'
+// import urls from '../config/urls.json'
+// import credentials from '../config/credentials.json'
 import { getContext, setupUi } from '../infrastructure/ui-setup'
 import fetchId from '../logic/utils'
 import { CurrentUserInfoResponse } from '../logic/api/responses/currentUserInfoResponse'
@@ -16,10 +16,10 @@ test.describe("pure API tests", async() =>{
         
         const jsonData  = await response.json()
         const stringData = JSON.stringify(await jsonData.data.userLogin)
-        expect.soft(stringData).toBe('1121629')
+        expect.soft(stringData).toBe('1121807')
         // --- ui test. start
         const label = await page.locator('//*[@id="app-root"]/div[2]/header/div/div[2]/div[1]/div[1]/div/div/div/button/span[2]').textContent()
-        expect(label).toBe("wael")
+        expect(label).toBe("nadia")
         // ---- end
     })
 
@@ -33,7 +33,7 @@ test.describe("pure API tests", async() =>{
         
         const jsonData  = await response.json()
         const stringData = JSON.stringify(await jsonData.data.userLogin)
-        expect.soft(stringData).toBe('1121629')
+        expect.soft(stringData).toBe('1121807')
 
         // const label = await page.locator('//*[@id="app-root"]/div[2]/header/div/div[2]/div[1]/div[1]/div/div/div/button/span[2]').textContent()
         // expect.soft(label).toBe("wael")    -- not needed 
