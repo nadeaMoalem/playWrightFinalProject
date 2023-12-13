@@ -1,7 +1,7 @@
 // tests/testUi.spec.ts
 import { test } from '@playwright/test';
-import InfraUi from '../src/infra/infraUi';
-import HomePage from '../src/logic/pages/homePage';
+import InfraUi from '../infrastructure/ui-setup';
+import HomePage from '../logic/ui/pages/homePage';
 
 
 test.describe('UI Test 1', async () => {
