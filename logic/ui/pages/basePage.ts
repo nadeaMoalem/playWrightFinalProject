@@ -7,6 +7,8 @@ export default class BasePage {
   constructor(page: Page) {
     this.page = page;
   }
-
+  async reload(){
+    await this.page.reload()
+  }
   // Common methods or properties...
 }

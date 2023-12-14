@@ -3,5 +3,8 @@
     "login_url":"https://www.terminalx.com/pg/MutationUserLogin",
     "add_to_cart":"https://www.terminalx.com/pg/MutationAddAnyProductsToAnyCart",
     "remove_from_cart":"https://www.terminalx.com/pg/MutationRemoveItemFromAnyCart",
-    "get_user_infro":"https://www.terminalx.com/pg/QueryCurrentUserInfo"
+    "get_user_info":"https://www.terminalx.com/pg/QueryCurrentUserInfo",
+    "add_to_wishlist": "https://www.terminalx.com/pg/MutationAddProductsToWishlist",
+    "remove_from_wishlist": "https://www.terminalx.com/pg/MutationRemoveProductsFromAnyWishlistById",
+    "get_global_info": "https://www.terminalx.com/pg/QueryGlobalUserInfo"
 }
