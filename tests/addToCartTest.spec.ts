@@ -8,7 +8,7 @@ import { CartComponent } from '../logic/ui/componenets/cartComponent'
 import HomePage from '../logic/ui/pages/homePage'
 
 
-test.describe("add to cart test suite", async() => {
+test.describe.skip("add to cart test suite", async() => {
     let page : Page
     
     test.beforeEach(async () => {

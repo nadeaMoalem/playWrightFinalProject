@@ -10,13 +10,19 @@ import { CurrentUserInfoResponse } from '../logic/api/responses/currentUserInfoR
 
 test.describe("delete from cart test suite", async() => {
     let page : Page
-    
+    let id : number|null
+
     test.beforeEach(async () => {
         await setupUi()
         await apicalls.loginCall(getContext())
         page = getPage()
         await page.goto('https://www.terminalx.com/')
         await page.reload()
+        await apicalls.addToCart(getNewContext(), "Z45089001303")
+        const response = await apicalls.getUserInfo(getNewContext())
+        const jsonData  = await response.json()
+        id = await utils.fetchId(jsonData)
+        expect.soft(id).toBeTruthy()
     })
 
     test.afterEach(async () => {
@@ -24,28 +30,15 @@ test.describe("delete from cart test suite", async() => {
     })
     
     test("delete from cart test using api", async () => {
-        //arrange
-        await apicalls.addToCart(getNewContext(), "Z45089001303")
-        const response = await apicalls.getUserInfo(getNewContext())
-        const jsonData  = await response.json()
-        const id = await utils.fetchId(jsonData)
-        expect.soft(id).toBeTruthy()
         //act
         await apicalls.deleteFromCart(getNewContext(), id!)
         //assert
         const userinfo = await apicalls.getUserInfo(getNewContext())
         const data : CurrentUserInfoResponse = await userinfo.json()
-
         expect(data.data.currentUserInfo.cart_object.items).toHaveLength(0)
         
     })
     test("delete from cart test using ui", async () => {
-        //arrange
-        await apicalls.addToCart(getNewContext(), "Z45089001303")
-        const response = await apicalls.getUserInfo(getNewContext())
-        const jsonData  = await response.json()
-        const id = await utils.fetchId(jsonData)
-        expect.soft(id).toBeTruthy()
         //act
         page.reload()
         const homePage = new HomePage(page)
@@ -58,5 +51,6 @@ test.describe("delete from cart test suite", async() => {
         //assert
         expect(await cartComponent.getEmptyText()).toBe("סל הקניות שלך ריק.")
     })
+
 
 })

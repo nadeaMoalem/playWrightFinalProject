@@ -35,19 +35,22 @@ test.describe.skip("add to wishlist test suite", async() => {
         const data = await utils.getWishlisData(jsonData)
         expect(data?.id).toBe(1605886)
         expect(data?.sku).toBe("W147290001")
+
+        await apicalls.removeFromWishList(getNewContext(), data?.id!)
+
+
     })
     test("add to wishlist test using ui", async () => {
         //arrange
         await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")
-        //act
         await page.reload()
         const homePage = new HomePage(page)
         await homePage.wishListCart()
-        //assert
+        //act
         const wishlist = new WishlistPage(page)
-        expect(await wishlist.getLabel()).toBe("מכנסי ג'ינס בגזרה ישרה") 
-        expect(await wishlist.getColor()).toBe("צבע: שחור") 
-        expect(await wishlist.getPrice()).toBe("299.90 ₪") 
+        await wishlist.removeItem()
+        //assert
+        expect(wishlist.getEmptyListText()).toBe('')
     })
 
 })

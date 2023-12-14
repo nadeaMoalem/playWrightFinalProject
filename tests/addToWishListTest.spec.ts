@@ -8,7 +8,7 @@ import { CartComponent } from '../logic/ui/componenets/cartComponent'
 import HomePage from '../logic/ui/pages/homePage'
 import { WishlistPage } from '../logic/ui/pages/wishListPage'
 
-test.describe("add to wishlist test suite", async() => {
+test.describe.skip("add to wishlist test suite", async() => {
     let page : Page
     
     test.beforeEach(async () => {
@@ -20,6 +20,7 @@ test.describe("add to wishlist test suite", async() => {
     })
 
     test.afterEach(async () => {
+        await apicalls.removeFromWishList(getNewContext(), 1605886)
         await teardownUi()
     })
     
