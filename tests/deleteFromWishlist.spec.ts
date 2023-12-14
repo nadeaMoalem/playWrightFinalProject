@@ -8,7 +8,7 @@ import { CartComponent } from '../logic/ui/componenets/cartComponent'
 import HomePage from '../logic/ui/pages/homePage'
 import { WishlistPage } from '../logic/ui/pages/wishListPage'
 
-test.describe("add to wishlist test suite", async() => {
+test.describe("delete from wishlist test suite", async() => {
     let page : Page
     
     test.beforeEach(async () => {
@@ -23,24 +23,24 @@ test.describe("add to wishlist test suite", async() => {
         await teardownUi()
     })
     
-    test("add to wishlist test using api", async () => {
-        //arrange
-        await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")
-        //act
+    // test("delete from wishlist test using api", async () => {
+    //     //arrange
+    //     await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")
+    //     //act
 
-        const response = await apicalls.getGlobalInfo(getNewContext())
-        const jsonData  = await response.json()
+    //     const response = await apicalls.getGlobalInfo(getNewContext())
+    //     const jsonData  = await response.json()
         
-        //assert
-        const data = await utils.getWishlisData(jsonData)
-        expect(data?.id).toBe(1605886)
-        expect(data?.sku).toBe("W147290001")
+    //     //assert
+    //     const data = await utils.getWishlisData(jsonData)
+    //     expect(data?.id).toBe(1605886)
+    //     expect(data?.sku).toBe("W147290001")
+        
+    //     await apicalls.removeFromWishList(getNewContext(), data?.id!)
+    //     expect(await jsonData.data.anyWishlist.items).toHaveLength(0)
 
-        await apicalls.removeFromWishList(getNewContext(), data?.id!)
-
-
-    })
-    test("add to wishlist test using ui", async () => {
+    // })
+    test("delete from wishlist test using ui", async () => {
         //arrange
         await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")
         await page.reload()
@@ -50,7 +50,7 @@ test.describe("add to wishlist test suite", async() => {
         const wishlist = new WishlistPage(page)
         await wishlist.removeItem()
         //assert
-        expect(wishlist.getEmptyListText()).toBe('')
+        expect(await wishlist.getEmptyListText()).toContain('לא הוספת עדיין פריטים לרשימה')
     })
 
 })

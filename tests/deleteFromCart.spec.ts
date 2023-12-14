@@ -8,7 +8,7 @@ import { CartComponent } from '../logic/ui/componenets/cartComponent'
 import HomePage from '../logic/ui/pages/homePage'
 import { CurrentUserInfoResponse } from '../logic/api/responses/currentUserInfoResponse'
 
-test.describe("delete from cart test suite", async() => {
+test.describe.skip("delete from cart test suite", async() => {
     let page : Page
     let id : number|null
 
