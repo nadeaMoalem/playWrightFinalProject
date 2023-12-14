@@ -8,7 +8,7 @@ import { CartComponent } from '../logic/ui/componenets/cartComponent'
 import HomePage from '../logic/ui/pages/homePage'
 import { WishlistPage } from '../logic/ui/pages/wishListPage'
 
-test.describe.skip("add to wishlist test suite", async() => {
+test.describe("add to wishlist test suite", async() => {
     let page : Page
     
     test.beforeEach(async () => {

@@ -5,7 +5,7 @@ import { setNewContext } from '../infrastructure/api-setup'
 import apicalls from '../logic/api/apiCalls'
 
 
-test.describe.skip("login test suite", async() => {
+test.describe("login test suite", async() => {
     
     let page : Page
     
