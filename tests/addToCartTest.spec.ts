@@ -31,10 +31,8 @@ test.describe.skip("add to cart test suite", async() => {
         //arrange
         await apicalls.addToCart(getNewContext(), "Z45089001303")
         //act
-
         const response = await apicalls.getUserInfo(getNewContext())
         const jsonData  = await response.json()
-     
         //assert
         const labelText = await utils.getLabelText(jsonData)
         const finalPrice = await utils.getFinalPrice(jsonData)

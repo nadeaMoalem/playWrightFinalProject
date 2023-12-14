@@ -23,23 +23,25 @@ test.describe("delete from wishlist test suite", async() => {
         await teardownUi()
     })
     
-    // test("delete from wishlist test using api", async () => {
-    //     //arrange
-    //     await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")
-    //     //act
+    test.only("delete from wishlist test using api", async () => {
+        //arrange
+        await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")
+        //act
 
-    //     const response = await apicalls.getGlobalInfo(getNewContext())
-    //     const jsonData  = await response.json()
-        
-    //     //assert
-    //     const data = await utils.getWishlisData(jsonData)
-    //     expect(data?.id).toBe(1605886)
-    //     expect(data?.sku).toBe("W147290001")
-        
-    //     await apicalls.removeFromWishList(getNewContext(), data?.id!)
-    //     expect(await jsonData.data.anyWishlist.items).toHaveLength(0)
+        const response = await apicalls.getGlobalInfo(getNewContext())
+        const jsonData  = await response.json()   
 
-    // })
+        const data = await utils.getWishlisData(jsonData)
+        expect.soft(data?.id).toBe(1605886)
+        expect.soft(data?.sku).toBe("W147290001")
+        
+        await apicalls.removeFromWishList(getNewContext(), data?.id!)
+        const responseAfterDelete = await apicalls.getGlobalInfo(getNewContext())
+        const jsonDataAfterDelete  = await responseAfterDelete.json()  
+        await page.pause()
+        expect(await jsonDataAfterDelete.data.anyWishlist.items_count).toBe(0)
+
+    })
     test("delete from wishlist test using ui", async () => {
         //arrange
         await apicalls.addToWishList(getNewContext(), "W147290001", "93", "4")

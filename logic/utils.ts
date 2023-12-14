@@ -29,7 +29,7 @@ async function fetchId(json:CurrentUserInfoResponse):Promise<number|null> {
 
  async function getWishlisData(json:GlobalInfoResponse){
     const items = json.data.anyWishlist.items || []
-    if(items){
+    if( items){
         return { id: items[0].id, sku: items[0].product.sku }
     }
     return null
